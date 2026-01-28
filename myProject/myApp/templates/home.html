@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{%block title %}Home Page - My Store{% endblock %}
+
+{% block content %}
+
+  <h1>Welcome to the Home Page</h1>
+  <nav>
+    <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'contact' %}">Contact</a></li>
+    </ul>
+</nav>
+    <p>Find the best products at amzing prices!</p>
+
+        <h2>Featured Products</h2>
+    <div id="products">
+        {% if products%}
+            <ul>
+                {%for product in products %}
+                    <li>
+                        <h3>{{ product.name }}</h3>
+                        <p>{{ product.description|truncatewords:100 }}</p>
+                        <p>Price: ${{ product.price }}</p>
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}" width="200">
+                        {% endif %}
+                        
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No products available at the moment.</p>
+        {% endif %}
+    </div>
+    <h2>Our Customers</h2>
+    <div id="customers">
+        {% if customers %}
+            <ul>
+                {% for customer in customers %}
+                    <li>
+                        <h3>{{ customer.first_name }} {{ customer.last_name }}</h3>
+                        <p>Email: {{ customer.email }}</p>
+                        {% if customer.profile_picture %}
+                            <img src="{{ customer.profile_picture.url }}" alt="{{ customer.first_name }}" width="100">
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}  
+            <p>No customers found.</p>
+        {% endif %}
+    </div>  
+{% endblock %}

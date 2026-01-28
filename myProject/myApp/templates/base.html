@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title> {% block title %} My E-commerce {% endblock%}</title>
+    </head>
+
+    <body>
+        <header>
+            <h1>My E-commerce Store</h1>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+        <footer>
+            <p>&copy; 2024 My E-commerce Store</p>
+        </footer>
+    </body>
+</html>
